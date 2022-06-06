@@ -14,10 +14,22 @@
 
             <!-- Name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="name" :value="__('Felhasználónév')" />
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
+
+                <div>
+                    <x-label for="name" :value="__('Vezetéknév')" />
+
+                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                </div>
+
+                <div>
+                    <x-label for="name" :value="__('Keresztnév')" />
+
+                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                </div>
 
             <!-- Email Address -->
             <div class="mt-4">
@@ -44,6 +56,7 @@
                                 type="password"
                                 name="password_confirmation" required />
             </div>
+
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

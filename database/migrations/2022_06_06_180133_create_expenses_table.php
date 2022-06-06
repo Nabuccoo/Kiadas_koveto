@@ -15,12 +15,14 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("user_id");
+            $table->unsignedBigInteger("user_id");
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger("amount");
             $table->enum('bookingType', ['income', 'expense']);
             $table->enum('currency', ['Ft', 'EUR', 'USD', 'TRY']);
-            $table->string('category');
-            $table->date('date');
+            $table->unsignedBigInteger("category_id");
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
         });
