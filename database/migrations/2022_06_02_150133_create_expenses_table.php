@@ -17,6 +17,7 @@ class CreateExpensesTable extends Migration
             $table->id();
             $table->bigInteger("user_id");
             $table->bigInteger("amount");
+            $table->enum('bookingType', ['income', 'expense']);
             $table->enum('currency', ['Ft', 'EUR', 'USD', 'TRY']);
             $table->string('category');
             $table->date('date');
