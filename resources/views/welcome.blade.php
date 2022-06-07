@@ -37,6 +37,7 @@
         @endif
         <div>
             <h1 style="color: darkolivegreen">Kiadás kezelő alkalmazás</h1>
+            <h2 style="color: darkolivegreen">Kérlek jelentkezz be az alkalmazás használatához!</h2>
 
         </div>
     </div>

@@ -13,6 +13,9 @@
                     {{$expense-> amount}}
                     @endforeach
                 </div>
+                <div class="p-6 bg-white border-b border-gray-200">
+                   Új tétel felvétele
+                </div>
 
                 <div class="p-6 bg-white border-b border-gray-200">
 
@@ -33,7 +36,7 @@
                         </div>
                     @endfor
                     <div>
-                        <label class="form-label mt-2" for="todo_select">Csoport</label>
+                        <label class="form-label mt-2" for="todo_select">Kategória</label>
                         <select id="todo_select" class="form-control" name="todo_group_id">
                             <option value="0">Egyéni</option>
                             @foreach($categories as $category)
