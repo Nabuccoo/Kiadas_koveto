@@ -21,14 +21,16 @@ class ExpenseTrackerController extends Controller
         $expenses = $user -> expenses -> sortBy ('currency');
         $categories = Category::all();
         $my_expenses = Expense::where('booking_type', '=', 'expense')->where('user_id', '=', Auth::id())->get();
-                $my_incomes = Expense::where('booking_type', '=', 'income')->where('user_id', '=', Auth::id())->get();
+        $my_incomes = Expense::where('booking_type', '=', 'income')->where('user_id', '=', Auth::id())->get();
+        $my_categories = Category::all();
 
 
         return view('dashboard', [
             'expenses' => $expenses,
-            'categories' => $categories,
+            'categories' => Category::all(),
             'my_expenses' => $my_expenses,
             'my_incomes' =>$my_incomes,
+            'my_categories' =>$my_categories,
         ]);
     }
 
@@ -110,5 +112,10 @@ class ExpenseTrackerController extends Controller
     {
         return view('tracker');
 
+    }
+
+    public function admin()
+    {
+        return view('admin');
     }
 }

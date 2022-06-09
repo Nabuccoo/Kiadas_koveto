@@ -1,85 +1,170 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h1 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Bevétel/kiadás') }}
-        </h2>
+        </h1>
     </x-slot>
+
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200" id="app">
-                    <div class="rendered-form">
-                        <div class="">
-                            <h1 access="false" id="control-6631402">Tétel felvétele</h1></div>
-                        <div class="formbuilder-text form-group field-text-1654772412475">
-                            <label for="text-1654772412475" class="formbuilder-text-label">Tétel neve<span class="tooltip-element" tooltip="Írd be a tétel nevét">?</span></label>
-                            <input type="text" class="form-control" name="text-1654772412475" access="false" id="text-1654772412475" title="Írd be a tétel nevét">
-                        </div>
-                        <div class="formbuilder-text form-group field-text-1654643350357">
-                            <label for="text-1654643350357" class="formbuilder-text-label">Összeg<span class="tooltip-element" tooltip="Add meg, hogy mennyi volt a bevételed">?</span></label>
-                            <input type="text" class="form-control" name="amount" access="false" maxlength="0" id="text-1654643350357" title="Add meg, hogy mennyi volt a bevételed">
-                        </div>
-                        <div class="formbuilder-radio-group form-group field-radio-group-1654643335766">
-                            <label for="radio-group-1654643335766" class="formbuilder-radio-group-label">Pénznem<span class="tooltip-element" tooltip="Válaszd ki a pénznemet">?</span></label>
-                            <div class="radio-group">
-                                <div class="formbuilder-radio">
-                                    <input name="booking_type" access="false" id="radio-group-1654643335766-0" value="option-1" type="radio">
-                                    <label for="radio-group-1654643335766-0">Ft</label>
-                                </div>
-                                <div class="formbuilder-radio">
-                                    <input name="radio-group-1654643335766" access="false" id="radio-group-1654643335766-1" value="option-2" type="radio" checked="checked">
-                                    <label for="radio-group-1654643335766-1">EUR</label>
-                                </div>
-                                <div class="formbuilder-radio">
-                                    <input name="radio-group-1654643335766" access="false" id="radio-group-1654643335766-2" value="option-3" type="radio">
-                                    <label for="radio-group-1654643335766-2">USD</label>
-                                </div>
-                                <div class="formbuilder-radio">
-                                    <input name="radio-group-1654643335766" access="false" id="radio-group-1654643335766-3" type="radio">
-                                    <label for="radio-group-1654643335766-3">TRY</label>
+                    <h1 class="container px-5 my-5 font-semibold text-xl text-gray-800 leading-tight">
+                        {{ __('Tétel felvétele') }}
+                    </h1>
+                    <div class="container px-5 my-5">
+
+                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="tetelNeve" type="text" placeholder="Tétel neve"
+                                       data-sb-validations="required"/>
+                                <label for="tetelNeve">Tétel neve</label>
+                                <div class="invalid-feedback" data-sb-feedback="tetelNeve:required">Tétel név megadása
+                                    kötelező!
                                 </div>
                             </div>
-                        </div>
-                        <div class="formbuilder-select form-group field-select-1654643344773">
-                            <label for="select-1654643344773" class="formbuilder-select-label">Kategória<span class="tooltip-element" tooltip="Válassz egy kategóriát">?</span></label>
-                            <select class="form-control" name="select-1654643344773" id="select-1654643344773">
-                                <option value="option-1" selected="true" id="select-1654643344773-0">Option 1</option>
-                                <option value="option-2" id="select-1654643344773-1">Option 2</option>
-                                <option value="option-3" id="select-1654643344773-2">Option 3</option>
-                            </select>
-                        </div>
-                        <div class="formbuilder-radio-group form-group field-radio-group-1654774142760">
-                            <label for="radio-group-1654774142760" class="formbuilder-radio-group-label">Tétel típusa<span class="tooltip-element" tooltip="Válaszd ki, hogy bevétel, vagy kiadást szeretnél rögzíteni">?</span></label>
-                            <div class="radio-group">
-                                <div class="formbuilder-radio">
-                                    <input name="radio-group-1654774142760" access="false" id="radio-group-1654774142760-0" value="option-1" type="radio" checked="checked">
-                                    <label for="radio-group-1654774142760-0">Bevétel</label>
-                                </div>
-                                <div class="formbuilder-radio">
-                                    <input name="radio-group-1654774142760" access="false" id="radio-group-1654774142760-1" value="option-2" type="radio">
-                                    <label for="radio-group-1654774142760-1">Kiadás</label>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="osszeg" type="text" placeholder="Összeg"
+                                       data-sb-validations="required"/>
+                                <label for="osszeg">Összeg</label>
+                                <div class="invalid-feedback" data-sb-feedback="osszeg:required">Összeg megadása
+                                    kötelező!
                                 </div>
                             </div>
-                        </div>
-                        <div class="formbuilder-date form-group field-date-1654643302445">
-                            <label for="date-1654643302445" class="formbuilder-date-label">Dátum<span class="tooltip-element" tooltip="Írd be, hogy mikor keletkezett ez a bevételed">?</span></label>
-                            <input type="date" class="form-control" name="date-1654643302445" access="false" value="2022-06-08" id="date-1654643302445" title="Írd be, hogy mikor keletkezett ez a bevételed">
-                        </div>
-                        <div class="formbuilder-button form-group field-button-1654643294638">
-                            <button type="button" class="btn-danger btn" name="button-1654643294638" access="false" id="button-1654643294638">Törlés</button>
-                        </div>
-                        <div class="formbuilder-button form-group field-button-1654769162127">
-                            <button type="button" class="btn-warning btn" name="button-1654769162127" access="false" id="button-1654769162127">Visszaállítás</button>
-                        </div>
-                        <div class="formbuilder-button form-group field-button-1654768927526">
-                            <button type="submit" class="btn-success btn" name="button-1654768927526" access="false" id="button-1654768927526">Mentés</button>
+                            <div class="mb-3">
+                                <label class="form-label d-block">Pénznem</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" id="ft" type="radio" name="penznem"
+                                           data-sb-validations="required"/>
+                                    <label class="form-check-label" for="ft">Ft</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" id="eur" type="radio" name="penznem"
+                                           data-sb-validations="required"/>
+                                    <label class="form-check-label" for="eur">EUR</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" id="usd" type="radio" name="penznem"
+                                           data-sb-validations="required"/>
+                                    <label class="form-check-label" for="usd">USD</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" id="try" type="radio" name="penznem"
+                                           data-sb-validations="required"/>
+                                    <label class="form-check-label" for="try">TRY</label>
+                                </div>
+                                <div class="invalid-feedback" data-sb-feedback="penznem:required">Egy opció kiválasztása
+                                    kötelező!.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="kategoria" aria-label="Kategória">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <label for="kategoria">Kategória</label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label d-block">Tétel típusa</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" id="bevetel" type="radio" name="tetelTipusa"
+                                           data-sb-validations=""/>
+                                    <label class="form-check-label" for="bevetel">Bevétel</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" id="kiadas" type="radio" name="tetelTipusa"
+                                           data-sb-validations=""/>
+                                    <label class="form-check-label" for="kiadas">Kiadás</label>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="datum" type="text" placeholder="Dátum"
+                                       data-sb-validations="required"/>
+                                <label for="datum">Dátum</label>
+                                <div class="invalid-feedback" data-sb-feedback="datum:required">Dátum megadása
+                                    kötelező!
+                                </div>
+                            </div>
+
+                            <div class="form-date form-group field-date-1654643302445">
+                                <label for="date-1654643302445" class="form-date-label">Dátum<span
+                                        class="tooltip-element" tooltip="Írd be, hogy mikor keletkezett ez a bevételed">?</span></label>
+                                <input type="date" class="form-control" name="date-1654643302445" access="false"
+                                       value="2022-06-08" id="date-1654643302445"
+                                       title="Írd be, hogy mikor keletkezett ez a bevételed">
+                            </div>
+
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center mb-3">
+                                    <div class="fw-bolder">A tételt sikeresen felvetted!</div>
+
+                                </div>
+                            </div>
+                            <div class="d-none" id="submitErrorMessage">
+                                <div class="text-center text-danger mb-3">Error sending message!</div>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit
+                                </button>
+                            </div>
+                            <div class="btn-group btn-group-lg" role="group" aria-label="delete-reset-submit-buttons">
+                                <button type="submit" class="btn-danger btn" name="deletetButton" access="false"
+                                        id="deleteButton">Törlés
+                                </button>
+                                <button type="submit" class="btn-warning btn" name="resetButton" access="false"
+                                        id="resetButton">visszaállítás
+                                </button>
+                                <button type="submit" class="btn-success btn" name="submitButton" access="false"
+                                        id="submitButton">Mentés
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
+
+                    Bevételek/ kiadások:
+                    <div class="py-12">
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                                <div class="p-6 bg-white border-b border-gray-200">
+
+                                    <!--Table-->
+                                    <table class="table table-striped w-auto">
+
+                                        <!--Table head-->
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tétel neve</th>
+                                            <th>Kategória</th>
+                                            <th>Összeg</th>
+                                            <th>Pénznem</th>
+                                            <th>Dátum</th>
+                                        </tr>
+                                        </thead>
+
+                                        <!--Table body-->
+                                        <tbody>
+
+                                        </tbody>
+                                        <!--Table body-->
+                                    </table>
+                                    <!--Table-->
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
+
 </x-app-layout>
 

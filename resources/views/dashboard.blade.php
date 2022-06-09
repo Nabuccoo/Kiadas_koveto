@@ -9,8 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200" id="app">
-                    Üdvözöllek kedves {{ Auth::user()->name }},
-                    <br>
+                    Üdvözöllek kedves {{ Auth::user()->name }}!
                     <br>
                     <dashboard-sum :my_expenses='@json($my_expenses)' :my_incomes='@json($my_incomes)'></dashboard-sum>
 
@@ -42,18 +41,18 @@
                                         <tbody>
                                         @forelse($my_incomes as $income)
 
-                                        <tr class="table-info">
-                                            <th scope="row">{{ $income-> id }}</th>
-                                            <td>{{ $income-> description }}</td>
-                                            <td>{{ $income-> category_id }}</td>
-                                            <td>{{ $income-> amount}}</td>
-                                            <td>{{ $income-> currency  }}</td>
-                                            <td>{{ $income-> updated_at }}</td>
-                                        </tr>
+                                            <tr class="table-info">
+                                                <th scope="row">{{ $income-> id }}</th>
+                                                <td>{{ $income-> description }}</td>
+                                                <td>{{ $income-> category_id }}</td>
+                                                <td>{{ $income-> amount}}</td>
+                                                <td>{{ $income-> currency  }}</td>
+                                                <td>{{ $income-> updated_at }}</td>
+                                            </tr>
                                         @empty
                                             <tr class="table-warning">
                                                 <td colspan="6">
-                                                    Nincenek kiadásaid.
+                                                    Nincsenek bevételeid.
                                                 </td>
                                             </tr>
 
@@ -94,20 +93,20 @@
                                         <tbody>
                                         @forelse($my_expenses as $expense)
 
-                                                <tr class="table-info">
-                                                    <td>{{ $expense-> id }}</td>
-                                                    <td>{{ $expense-> description }}</td>
-                                                    <td>{{ $expense-> category_id }}</td>
-                                                    <td>{{ $expense-> amount}}</td>
-                                                    <td>{{ $expense-> currency  }}</td>
-                                                    <td>{{ $expense-> updated_at }}</td>
-                                                </tr>
-                                                @empty
-                                                    <tr class="table-warning">
-                                                        <td colspan="6">
-                                                            Nincenek kiadásaid.
-                                                        </td>
-                                                    </tr>
+                                            <tr class="table-info">
+                                                <td>{{ $expense-> id }}</td>
+                                                <td>{{ $expense-> description }}</td>
+                                                <td>{{ $expense-> category_id }}</td>
+                                                <td>{{ $expense-> amount}}</td>
+                                                <td>{{ $expense-> currency  }}</td>
+                                                <td>{{ $expense-> updated_at }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr class="table-warning">
+                                                <td colspan="6">
+                                                    Nincsenek kiadásaid.
+                                                </td>
+                                            </tr>
 
                                         @endforelse
                                         </tbody>
