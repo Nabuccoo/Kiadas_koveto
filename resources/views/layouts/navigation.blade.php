@@ -22,6 +22,7 @@
                         {{ __('Bevétel/kiadás') }}
                     </x-nav-link>
                 </div>
+
             </div>
 
             <!-- Settings Dropdown -->

@@ -8,11 +8,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    Üdvözöllek kedves XY,
+                <div class="p-6 bg-white border-b border-gray-200" id="app">
+                    Üdvözöllek kedves {{ Auth::user()->name }},
                     <br>
                     <br>
-                    az aktuális egyenleged:
+                    <dashboard-sum :my_expenses='@json($my_expenses)' :my_incomes='@json($my_incomes)'></dashboard-sum>
+
 
                     <hr>
                     <br>
@@ -34,23 +35,29 @@
                                             <th>Összeg</th>
                                             <th>Pénznem</th>
                                             <th>Dátum</th>
-                                            <th>Age</th>
                                         </tr>
                                         </thead>
-                                        <!--Table head-->
 
                                         <!--Table body-->
                                         <tbody>
-                                        <tr class="table-info">
-                                            <th scope="row">1</th>
-                                            <td>Kate</td>
-                                            <td>Moss</td>
-                                            <td>USA</td>
-                                            <td>New York City</td>
-                                            <td>Web Designer</td>
-                                            <td>23</td>
-                                        </tr>
+                                        @forelse($my_incomes as $income)
 
+                                        <tr class="table-info">
+                                            <th scope="row">{{ $income-> id }}</th>
+                                            <td>{{ $income-> description }}</td>
+                                            <td>{{ $income-> category_id }}</td>
+                                            <td>{{ $income-> amount}}</td>
+                                            <td>{{ $income-> currency  }}</td>
+                                            <td>{{ $income-> updated_at }}</td>
+                                        </tr>
+                                        @empty
+                                            <tr class="table-warning">
+                                                <td colspan="6">
+                                                    Nincenek kiadásaid.
+                                                </td>
+                                            </tr>
+
+                                        @endforelse
                                         </tbody>
                                         <!--Table body-->
                                     </table>
@@ -80,23 +87,29 @@
                                             <th>Összeg</th>
                                             <th>Pénznem</th>
                                             <th>Dátum</th>
-                                            <th>Age</th>
                                         </tr>
                                         </thead>
-                                        <!--Table head-->
 
                                         <!--Table body-->
                                         <tbody>
-                                        <tr class="table-info">
-                                            <th scope="row">1</th>
-                                            <td>Kate</td>
-                                            <td>Moss</td>
-                                            <td>USA</td>
-                                            <td>New York City</td>
-                                            <td>Web Designer</td>
-                                            <td>23</td>
-                                        </tr>
+                                        @forelse($my_expenses as $expense)
 
+                                                <tr class="table-info">
+                                                    <td>{{ $expense-> id }}</td>
+                                                    <td>{{ $expense-> description }}</td>
+                                                    <td>{{ $expense-> category_id }}</td>
+                                                    <td>{{ $expense-> amount}}</td>
+                                                    <td>{{ $expense-> currency  }}</td>
+                                                    <td>{{ $expense-> updated_at }}</td>
+                                                </tr>
+                                                @empty
+                                                    <tr class="table-warning">
+                                                        <td colspan="6">
+                                                            Nincenek kiadásaid.
+                                                        </td>
+                                                    </tr>
+
+                                        @endforelse
                                         </tbody>
                                         <!--Table body-->
                                     </table>
@@ -112,5 +125,5 @@
         </div>
     </div>
 
-
 </x-app-layout>
+

@@ -18,11 +18,12 @@ class CreateExpensesTable extends Migration
             $table->unsignedBigInteger("user_id");
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger("amount");
-            $table->enum('bookingType', ['income', 'expense']);
+            $table->enum('booking_type', ['income', 'expense']);
             $table->enum('currency', ['Ft', 'EUR', 'USD', 'TRY']);
             $table->unsignedBigInteger("category_id");
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->text('description');
+            $table->date('expense_date');
             $table->timestamps();
             $table->softDeletes();
         });

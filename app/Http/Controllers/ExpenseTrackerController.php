@@ -18,12 +18,17 @@ class ExpenseTrackerController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $expenses = $user -> expenses -> sortBy ('amount');
+        $expenses = $user -> expenses -> sortBy ('currency');
         $categories = Category::all();
+        $my_expenses = Expense::where('booking_type', '=', 'expense')->where('user_id', '=', Auth::id())->get();
+                $my_incomes = Expense::where('booking_type', '=', 'income')->where('user_id', '=', Auth::id())->get();
 
-        return view('tracker', [
+
+        return view('dashboard', [
             'expenses' => $expenses,
             'categories' => $categories,
+            'my_expenses' => $my_expenses,
+            'my_incomes' =>$my_incomes,
         ]);
     }
 
@@ -48,7 +53,7 @@ class ExpenseTrackerController extends Controller
         $expense = new Expense();
         $expense->user_id = Auth::id();
         $expense->amount = $request->amount;
-        $expense->bookingType = $request->bookingType;
+        $expense->booking_type = $request->booking_type;
         $expense->currency = $request->currency;
         $expense->category_id= $request->category_id;
         $expense->description = $request->description;
@@ -99,5 +104,11 @@ class ExpenseTrackerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tracker()
+    {
+        return view('tracker');
+
     }
 }

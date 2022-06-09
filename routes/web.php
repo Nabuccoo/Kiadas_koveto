@@ -18,11 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
-Route::get('/tracker', [ExpenseTrackerController::class, 'index'] ) ->middleware(['auth'])->name('tracker');
+Route::get('/dashboard', [ExpenseTrackerController::class, 'index'] ) ->middleware(['auth'])->name('dashboard');
+Route::get('/tracker', [ExpenseTrackerController::class, 'tracker'] ) ->middleware(['auth'])->name('tracker');
 Route::post('/tracker', [ExpenseTrackerController::class, 'store']) ->middleware(['auth'])->name('tracker.store');
 
 require __DIR__.'/auth.php';
