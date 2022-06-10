@@ -97,6 +97,9 @@
                                 <input type="date" class="form-control" name="date-1654643302445" access="false"
                                        value="2022-06-08" id="date-1654643302445"
                                        title="Írd be, hogy mikor keletkezett ez a bevételed">
+                                <div class="invalid-feedback" data-sb-feedback="datum:required">Dátum megadása
+                                    kötelező!
+                                </div>
                             </div>
 
                             <div class="d-none" id="submitSuccessMessage">
@@ -106,7 +109,7 @@
                                 </div>
                             </div>
                             <div class="d-none" id="submitErrorMessage">
-                                <div class="text-center text-danger mb-3">Error sending message!</div>
+                                <div class="text-center text-danger mb-3">Valami hiba történt!</div>
                             </div>
                             <div class="d-grid">
                                 <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit
