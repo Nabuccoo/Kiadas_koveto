@@ -30,6 +30,17 @@ class  DatabaseSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
+        DB::table('users')->insert([
+            'user_role' => 'user',
+            'name' => 'Petya',
+            'first_name' => $faker->firstName,
+            'last_name' => $faker->lastName,
+            'email' => 'ccc@ccc.com',
+            'password' => Hash::make('Csokifagyi'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
 
         for ($i = 0; $i < 10; $i++) {
             DB::table('users')->insert([

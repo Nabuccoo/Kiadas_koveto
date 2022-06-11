@@ -17,6 +17,9 @@
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                                 <div class="p-6 bg-white border-b border-gray-200">
 
+                                    <div>
+                                        <a href="#ujfelhasznalo" class="btn btn-info">Új felhasználó</a>
+                                    </div>
                                     <!--Table-->
                                     <table class="table table-striped w-auto">
 
@@ -28,7 +31,6 @@
                                             <th>Vezetéknév</th>
                                             <th>Keresztnév</th>
                                             <th>E-mail cím</th>
-                                            <th>Jelszó</th>
                                             <th>Jogosultság</th>
                                             <th>Létrehozva</th>
                                             <th>Módosítva</th>
@@ -44,10 +46,15 @@
                                                 <td>{{ $user -> last_name }}</td>
                                                 <td>{{ $user -> first_name }}</td>
                                                 <td>{{ $user -> email }}</td>
-                                                <td>{{ $user -> password }}</td>
                                                 <td>{{ $user -> user_role }}</td>
                                                 <td>{{ $user -> created_at}}</td>
                                                 <td>{{ $user -> updated_at }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-warning">Módosítás</button>
+                                                        <button class="btn btn-danger">Törlés</button>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr class="table-warning">
@@ -69,7 +76,7 @@
                     <br>
 
 
-                    <h1 class="container px-5 my-5 font-semibold text-xl text-gray-800 leading-tight">
+                    <h1 id="ujfelhasznalo" class="container px-5 my-5 font-semibold text-xl text-gray-800 leading-tight">
                     {{ __('Felhasználó felvétele/ módosítása:') }}
                     </h1>
                     <div class="container px-5 my-5">
@@ -124,19 +131,9 @@
                                 <div class="text-center text-danger mb-3">Valami hiba történt!</div>
                             </div>
                             <div class="d-grid">
-                                <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
+                                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Mentés</button>
                             </div>
-                            <div class="btn-group btn-group-lg" role="group" aria-label="delete-reset-submit-buttons">
-                                <button type="submit" class="btn-danger btn" name="deletetButton" access="false"
-                                        id="deleteButton">Törlés
-                                </button>
-                                <button type="submit" class="btn-warning btn" name="resetButton" access="false"
-                                        id="resetButton">visszaállítás
-                                </button>
-                                <button type="submit" class="btn-success btn" name="submitButton" access="false"
-                                        id="submitButton">Mentés
-                                </button>
-                            </div>
+
                         </form>
                     </div>
 
@@ -154,6 +151,9 @@
                                     <!--Table-->
                                     <table class="table table-striped w-auto">
 
+                                        <div>
+                                            <a href="#ujkategoria" class="btn btn-info">Új kategória</a>
+                                        </div>
                                         <!--Table head-->
                                         <thead>
                                         <tr>
@@ -176,6 +176,12 @@
                                                 <td>{{ $category-> active }}</td>
                                                 <td>{{ $category-> created_at}}</td>
                                                 <td>{{ $category-> updated_at }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-warning">Módosítás</button>
+                                                        <button class="btn btn-danger">Törlés</button>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr class="table-warning">
@@ -198,13 +204,15 @@
                     <hr>
                     <br>
 
-                    <h1 class="container px-5 my-5 font-semibold text-xl text-gray-800 leading-tight">
+                    <h1 id="ujkategoria" class="container px-5 my-5 font-semibold text-xl text-gray-800 leading-tight">
                         {{ __('Kategória felvétele/ módosítása:') }}
                     </h1>
                     <div class="container px-5 my-5">
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+
+                        <form action="/admin" method="POST" id="categoryForm" data-sb-form-api-token="API_TOKEN">
+                            @csrf
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="kategoriaNeve" type="text" placeholder="Kategória neve" data-sb-validations="required" />
+                                <input class="form-control" id="kategoriaNeve" name="category_name" type="text" placeholder="Kategória neve" data-sb-validations="required" />
                                 <label for="kategoriaNeve">Kategória neve</label>
                                 <div class="invalid-feedback" data-sb-feedback="kategoriaNeve:required">Kategória név megadása
                                     kötelező!</div>
@@ -212,11 +220,11 @@
                             <div class="mb-3">
                                 <label class="form-label d-block">Státusz</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="aktiv" type="radio" name="statusz" data-sb-validations="required" />
+                                    <input class="form-check-input" id="aktiv" type="radio"  value="true" name="active" data-sb-validations="required" />
                                     <label class="form-check-label" for="aktiv">Aktív</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="inaktiv" type="radio" name="statusz" data-sb-validations="required" />
+                                    <input class="form-check-input" id="inaktiv" type="radio" value="false" name="active" data-sb-validations="required" />
                                     <label class="form-check-label" for="inaktiv">Inaktív</label>
                                 </div>
                                 <div class="invalid-feedback" data-sb-feedback="statusz:required">Egy opció kiválasztása kötelező!</div>
@@ -231,20 +239,9 @@
                                 <div class="text-center text-danger mb-3">Valami hiba történt!</div>
                             </div>
                             <div class="d-grid">
-                                <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
+                                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Mentés</button>
                             </div>
 
-                            <div class="btn-group btn-group-lg" role="group" aria-label="delete-reset-submit-buttons">
-                                <button type="submit" class="btn-danger btn" name="deletetButton" access="false"
-                                        id="deleteButton">Törlés
-                                </button>
-                                <button type="submit" class="btn-warning btn" name="resetButton" access="false"
-                                        id="resetButton">visszaállítás
-                                </button>
-                                <button type="submit" class="btn-success btn" name="submitButton" access="false"
-                                        id="submitButton">Mentés
-                                </button>
-                            </div>
 
                         </form>
                     </div>

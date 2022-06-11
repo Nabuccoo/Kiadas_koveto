@@ -17,7 +17,7 @@ class RoleMiddleware
         if(Auth::user() == null){
             abort(403);
         }
-        if(Auth::user()->role != $role){
+        if(Auth::user()->user_role != $role){
             abort(403);
         }
         return $next($request);

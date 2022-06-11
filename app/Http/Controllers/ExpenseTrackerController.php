@@ -18,23 +18,12 @@ class ExpenseTrackerController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $expenses = $user -> expenses -> sortBy ('currency');
-        $categories = Category::all();
         $my_expenses = Expense::where('booking_type', '=', 'expense')->where('user_id', '=', Auth::id())->get();
         $my_incomes = Expense::where('booking_type', '=', 'income')->where('user_id', '=', Auth::id())->get();
-        $my_categories = Category::all();
-        $all_users = User::all();
-
-
 
         return view('dashboard', [
-            'expenses' => $expenses,
-            'categories' => Category::all(),
             'my_expenses' => $my_expenses,
             'my_incomes' => $my_incomes,
-            'my_categories' => $my_categories,
-            'all_users' => $all_users,
         ]);
     }
 
@@ -66,6 +55,30 @@ class ExpenseTrackerController extends Controller
         $expense->expense_date = $request->expense_date;
         $expense->save();
         return redirect()->route('tracker');
+    }
+
+
+    public function storeUser(Request $request)
+    {
+        $user = new User();
+        $user->user_id = Auth::id();
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->first_name = $request->first_name;
+        $user->email = $request->email;
+        $user->user_role = $request->user_role;
+        $user->save();
+        return redirect()->route('admin');
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $category = new Category();
+        $category->user_id = Auth::id();
+        $category->category_name = $category->category_name;
+        $category->active = $category->active;
+        $user->save();
+        return redirect()->route('admin');
     }
 
     /**
@@ -115,7 +128,14 @@ class ExpenseTrackerController extends Controller
 
     public function tracker()
     {
-        return view('tracker');
+        $user = Auth::user();
+        $categories = Category::where('active', 1)->get();
+        $expenses = $user->expenses;
+
+        return view('tracker', [
+            'categories' => $categories,
+            'expenses' => $expenses,
+        ]);
 
     }
 

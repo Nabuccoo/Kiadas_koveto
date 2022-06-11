@@ -21,10 +21,14 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', [ExpenseTrackerController::class, 'index'] ) ->middleware(['auth'])->name('dashboard');
+
+
 Route::get('/tracker', [ExpenseTrackerController::class, 'tracker'] ) ->middleware(['auth'])->name('tracker');
-Route::get('/admin', [ExpenseTrackerController::class, 'admin'] ) ->middleware(['auth'])->name('admin');
 Route::post('/tracker', [ExpenseTrackerController::class, 'store']) ->middleware(['auth'])->name('tracker.store');
-Route::get('/admin', [AdminController::class, 'index']) ->middleware(['auth', 'role:admin'])->name('admin');
+
+
+Route::get('/admin', [ExpenseTrackerController::class, 'admin'] ) ->middleware(['auth'])->name('admin');
+Route::get('/admin', [AdminController::class, 'index']) ->middleware(['auth', 'user_role:admin'])->name('admin');
 
 
 require __DIR__.'/auth.php';
