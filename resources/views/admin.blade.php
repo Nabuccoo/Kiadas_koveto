@@ -81,7 +81,7 @@
                     </h1>
                     <div class="container px-5 my-5">
 
-                        <form action="/admin" method="POST" id="userForm" data-sb-form-api-token="API_TOKEN">
+                        <form action="/admin/new_user" method="POST" id="userForm" data-sb-form-api-token="API_TOKEN">
                             @csrf
                             <div class="form-floating mb-3">
                                 <input class="form-control" name = "name" id="felhasznalonev" type="text" placeholder="Felhasználónév" data-sb-validations="required" />
@@ -209,7 +209,7 @@
                     </h1>
                     <div class="container px-5 my-5">
 
-                        <form action="/admin" method="POST" id="categoryForm" data-sb-form-api-token="API_TOKEN">
+                        <form action="/admin/category" method="POST" id="categoryForm" data-sb-form-api-token="API_TOKEN">
                             @csrf
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="kategoriaNeve" name="category_name" type="text" placeholder="Kategória neve" data-sb-validations="required" />
@@ -220,11 +220,11 @@
                             <div class="mb-3">
                                 <label class="form-label d-block">Státusz</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="aktiv" type="radio"  value="true" name="active" data-sb-validations="required" />
+                                    <input class="form-check-input" id="aktiv" checked type="radio" value="1" name="active" data-sb-validations="required" />
                                     <label class="form-check-label" for="aktiv">Aktív</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="inaktiv" type="radio" value="false" name="active" data-sb-validations="required" />
+                                    <input class="form-check-input" id="inaktiv" type="radio" value="0" name="active" data-sb-validations="required" />
                                     <label class="form-check-label" for="inaktiv">Inaktív</label>
                                 </div>
                                 <div class="invalid-feedback" data-sb-feedback="statusz:required">Egy opció kiválasztása kötelező!</div>

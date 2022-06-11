@@ -27,8 +27,8 @@ Route::get('/tracker', [ExpenseTrackerController::class, 'tracker'] ) ->middlewa
 Route::post('/tracker', [ExpenseTrackerController::class, 'store']) ->middleware(['auth'])->name('tracker.store');
 
 
-Route::get('/admin', [ExpenseTrackerController::class, 'admin'] ) ->middleware(['auth'])->name('admin');
 Route::get('/admin', [AdminController::class, 'index']) ->middleware(['auth', 'user_role:admin'])->name('admin');
-
+Route::post('/admin/category', [AdminController::class, 'store_category'])->middleware(['auth', 'user_role:admin'])->name('store_category');
+Route::post('/admin/new_user', [AdminController::class, 'store_user'])->middleware(['auth', 'user_role:admin'])->name('store_user');
 
 require __DIR__.'/auth.php';

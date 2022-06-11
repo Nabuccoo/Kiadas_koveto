@@ -57,30 +57,6 @@ class ExpenseTrackerController extends Controller
         return redirect()->route('tracker');
     }
 
-
-    public function storeUser(Request $request)
-    {
-        $user = new User();
-        $user->user_id = Auth::id();
-        $user->name = $request->name;
-        $user->last_name = $request->last_name;
-        $user->first_name = $request->first_name;
-        $user->email = $request->email;
-        $user->user_role = $request->user_role;
-        $user->save();
-        return redirect()->route('admin');
-    }
-
-    public function storeCategory(Request $request)
-    {
-        $category = new Category();
-        $category->user_id = Auth::id();
-        $category->category_name = $category->category_name;
-        $category->active = $category->active;
-        $user->save();
-        return redirect()->route('admin');
-    }
-
     /**
      * Display the specified resource.
      *
@@ -139,8 +115,4 @@ class ExpenseTrackerController extends Controller
 
     }
 
-    public function admin()
-    {
-        return view('admin');
-    }
 }
