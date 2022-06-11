@@ -32,8 +32,8 @@
                                             <th>Keresztnév</th>
                                             <th>E-mail cím</th>
                                             <th>Jogosultság</th>
-                                            <th>Létrehozva</th>
                                             <th>Módosítva</th>
+                                            <th></th>
                                         </tr>
                                         </thead>
 
@@ -47,12 +47,13 @@
                                                 <td>{{ $user -> first_name }}</td>
                                                 <td>{{ $user -> email }}</td>
                                                 <td>{{ $user -> user_role }}</td>
-                                                <td>{{ $user -> created_at}}</td>
                                                 <td>{{ $user -> updated_at }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button class="btn btn-warning">Módosítás</button>
-                                                        <button class="btn btn-danger">Törlés</button>
+                                                        <form action="/admin/user_delete/{{ $user->id }}" method="POST">
+                                                            @csrf
+                                                            <button class="btn btn-danger">Törlés</button>
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -84,6 +85,7 @@
                         <form action="/admin/new_user" method="POST" id="userForm" data-sb-form-api-token="API_TOKEN">
                             @csrf
                             <div class="form-floating mb-3">
+                                <input type="hidden" name="last_id" value="{{$last_id+1}}">
                                 <input class="form-control" name = "name" id="felhasznalonev" type="text" placeholder="Felhasználónév" data-sb-validations="required" />
                                 <label for="felhasznalonev">Felhasználónév</label>
                                 <div class="invalid-feedback" data-sb-feedback="felhasznalonev:required">Felhasználónév megadása
@@ -116,8 +118,8 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="user_role" id="jogosultsag" aria-label="Jogosultság">
-                                    <option value="Felhasználó">Felhasználó</option>
-                                    <option value="Adminisztrátor">Adminisztrátor</option>
+                                    <option value="user">Felhasználó</option>
+                                    <option value="admin">Adminisztrátor</option>
                                 </select>
                                 <label for="jogosultsag">Jogosultság</label>
                             </div>
@@ -178,8 +180,10 @@
                                                 <td>{{ $category-> updated_at }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button class="btn btn-warning">Módosítás</button>
-                                                        <button class="btn btn-danger">Törlés</button>
+                                                        <form action="/admin/category_delete/{{ $category->id }}" method="POST">
+                                                            @csrf
+                                                            <button class="btn btn-danger">Törlés</button>
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>

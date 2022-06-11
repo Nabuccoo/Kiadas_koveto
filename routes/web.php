@@ -25,10 +25,13 @@ Route::get('/dashboard', [ExpenseTrackerController::class, 'index'] ) ->middlewa
 
 Route::get('/tracker', [ExpenseTrackerController::class, 'tracker'] ) ->middleware(['auth'])->name('tracker');
 Route::post('/tracker', [ExpenseTrackerController::class, 'store']) ->middleware(['auth'])->name('tracker.store');
+Route::post('tracker/delete/{id}', [ExpenseTrackerController::class, 'destroy'])->middleware(['auth'])->name('tracker.destroy');
 
 
 Route::get('/admin', [AdminController::class, 'index']) ->middleware(['auth', 'user_role:admin'])->name('admin');
 Route::post('/admin/category', [AdminController::class, 'store_category'])->middleware(['auth', 'user_role:admin'])->name('store_category');
 Route::post('/admin/new_user', [AdminController::class, 'store_user'])->middleware(['auth', 'user_role:admin'])->name('store_user');
+Route::post('/admin/user_delete/{id}', [AdminController::class, 'destroy'])->middleware(['auth', 'user_role:admin'])->name('delete_user');
+Route::post('/admin/category_delete/{id}', [AdminController::class, 'delete'])->middleware(['auth', 'user_role:admin'])->name('delete_category');
 
 require __DIR__.'/auth.php';

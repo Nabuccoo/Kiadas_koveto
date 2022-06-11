@@ -50,10 +50,10 @@
                                                 <td>{{ $expense-> expense_date }}</td>
                                                 <td>{{ $expense-> booking_type }}</td>
                                                 <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-warning">Módosítás</button>
-                                                        <button class="btn btn-danger">Törlés</button>
-                                                    </div>
+                                                        <form action="/tracker/delete/{{ $expense->id }}" method="post">
+                                                            @csrf
+                                                            <button class="btn btn-danger">Törlés</button>
+                                                        </form>
                                                 </td>
                                             </tr>
                                         @else
@@ -66,10 +66,10 @@
                                                 <td>{{ $expense-> expense_date }}</td>
                                                 <td>{{ $expense-> booking_type }}</td>
                                                 <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-warning">Módosítás</button>
-                                                        <button class="btn btn-danger">Törlés</button>
-                                                    </div>
+                                                        <form action="/tracker/delete/{{ $expense->id }}" method="post">
+                                                            @csrf
+                                                            <button class="btn btn-danger">Törlés</button>
+                                                        </form>
                                                 </td>
                                             </tr>
                                         @endif

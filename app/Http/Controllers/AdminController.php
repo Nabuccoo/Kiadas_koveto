@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -18,10 +19,12 @@ class AdminController extends Controller
     {
         $users = User::all();
         $categories = Category::all();
+        $last_id = $users->last()->id;
 
         return view('admin', [
             'users' => $users,
-            'categories' => $categories
+            'categories' => $categories,
+            'last_id' => $last_id,
         ]);
     }
 
@@ -88,17 +91,25 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect()->route('admin');
+    }
+
+    public function delete($id)
+    {
+        Category::destroy($id);
+        return redirect()->route('admin');
     }
 
     public function store_user(Request $request)
     {
         $user = new User();
-        $user->user_id = User::last()+1;
+        $user->id = $request->last_id;
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->first_name = $request->first_name;
         $user->email = $request->email;
+        $user->password = Hash::make($request->password);
         $user->user_role = $request->user_role;
         $user->save();
         return redirect()->route('admin');

@@ -99,7 +99,8 @@ class ExpenseTrackerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Expense::destroy($id);
+        return redirect()->route('tracker');
     }
 
     public function tracker()
