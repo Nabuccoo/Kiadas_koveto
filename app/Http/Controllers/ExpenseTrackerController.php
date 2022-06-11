@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Expense;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,14 +24,17 @@ class ExpenseTrackerController extends Controller
         $my_expenses = Expense::where('booking_type', '=', 'expense')->where('user_id', '=', Auth::id())->get();
         $my_incomes = Expense::where('booking_type', '=', 'income')->where('user_id', '=', Auth::id())->get();
         $my_categories = Category::all();
+        $all_users = User::all();
+
 
 
         return view('dashboard', [
             'expenses' => $expenses,
             'categories' => Category::all(),
             'my_expenses' => $my_expenses,
-            'my_incomes' =>$my_incomes,
-            'my_categories' =>$my_categories,
+            'my_incomes' => $my_incomes,
+            'my_categories' => $my_categories,
+            'all_users' => $all_users,
         ]);
     }
 
@@ -59,6 +63,7 @@ class ExpenseTrackerController extends Controller
         $expense->currency = $request->currency;
         $expense->category_id= $request->category_id;
         $expense->description = $request->description;
+        $expense->expense_date = $request->expense_date;
         $expense->save();
         return redirect()->route('tracker');
     }

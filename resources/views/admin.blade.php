@@ -109,8 +109,25 @@
 
                                         <!--Table body-->
                                         <tbody>
-
-
+                                        @forelse($users as $user)
+                                            <tr class="table-info">
+                                                <th scope="row">{{ $user -> id }}</th>
+                                                <td>{{ $user -> name }}</td>
+                                                <td>{{ $user -> last_name }}</td>
+                                                <td>{{ $user -> first_name }}</td>
+                                                <td>{{ $user -> email }}</td>
+                                                <td>{{ $user -> password }}</td>
+                                                <td>{{ $user -> user_role }}</td>
+                                                <td>{{ $user -> created_at}}</td>
+                                                <td>{{ $user -> updated_at }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr class="table-warning">
+                                                <td colspan="6">
+                                                    Nincsenek regisztrált felhasználók.
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                         </tbody>
                                         <!--Table body-->
                                     </table>
@@ -201,7 +218,23 @@
 
                                         <!--Table body-->
                                         <tbody>
+                                        @forelse($categories as $category)
 
+                                            <tr class="table-info">
+                                                <th scope="row">{{ $category-> id }}</th>
+                                                <td>{{ $category-> category_name }}</td>
+                                                <td>{{ $category-> active }}</td>
+                                                <td>{{ $category-> created_at}}</td>
+                                                <td>{{ $category-> updated_at }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr class="table-warning">
+                                                <td colspan="6">
+                                                    Nincsenek felvett kategóriák.
+                                                </td>
+                                            </tr>
+
+                                        @endforelse
 
                                         </tbody>
                                         <!--Table body-->
