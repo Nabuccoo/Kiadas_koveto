@@ -10,12 +10,68 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200" id="app">
+
+                    Bevételek/ kiadások:
+                    <div class="py-12">
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                                <div class="p-6 bg-white border-b border-gray-200">
+
+                                    <!--Table-->
+                                    <table class="table table-striped w-auto">
+
+                                        <!--Table head-->
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tétel neve</th>
+                                            <th>Kategória</th>
+                                            <th>Összeg</th>
+                                            <th>Pénznem</th>
+                                            <th>Dátum</th>
+                                            <th>Tétel típusa</th>
+                                        </tr>
+                                        </thead>
+
+                                        <!--Table body-->
+                                        <tbody>
+                                        @forelse($my_expenses as $expense)
+
+                                            <tr class="table-info">
+                                                <td>{{ $expense-> id }}</td>
+                                                <td>{{ $expense-> description }}</td>
+                                                <td>{{ $expense-> category_id }}</td>
+                                                <td>{{ $expense-> amount}}</td>
+                                                <td>{{ $expense-> currency  }}</td>
+                                                <td>{{ $expense-> expense_date }}</td>
+                                                <td>{{ $expense-> booking_type }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr class="table-warning">
+                                                <td colspan="6">
+                                                    Nincsenek kiadásaid.
+                                                </td>
+                                            </tr>
+
+                                        @endforelse
+
+                                        </tbody>
+                                        <!--Table body-->
+                                    </table>
+                                    <!--Table-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <h1 class="container px-5 my-5 font-semibold text-xl text-gray-800 leading-tight">
                         {{ __('Tétel felvétele') }}
                     </h1>
                     <div class="container px-5 my-5">
 
-                        <form action="/tracker" method="POST" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <form action="/tracker" method="POST" id="expenseForm" data-sb-form-api-token="API_TOKEN">
                         @csrf
                             <div class="form-floating mb-3">
                                 <input class="form-control" name="description" id="tetelNeve" type="text" placeholder="Tétel neve"
@@ -106,57 +162,6 @@
                     </div>
                     <hr>
 
-                    Bevételek/ kiadások:
-                    <div class="py-12">
-                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                                <div class="p-6 bg-white border-b border-gray-200">
-
-                                    <!--Table-->
-                                    <table class="table table-striped w-auto">
-
-                                        <!--Table head-->
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Tétel neve</th>
-                                            <th>Kategória</th>
-                                            <th>Összeg</th>
-                                            <th>Pénznem</th>
-                                            <th>Dátum</th>
-                                        </tr>
-                                        </thead>
-
-                                        <!--Table body-->
-                                        <tbody>
-                                        @forelse($my_expenses as $expense)
-
-                                            <tr class="table-info">
-                                                <td>{{ $expense-> id }}</td>
-                                                <td>{{ $expense-> description }}</td>
-                                                <td>{{ $expense-> category_id }}</td>
-                                                <td>{{ $expense-> amount}}</td>
-                                                <td>{{ $expense-> currency  }}</td>
-                                                <td>{{ $expense-> expense_date }}</td>
-                                            </tr>
-                                        @empty
-                                            <tr class="table-warning">
-                                                <td colspan="6">
-                                                    Nincsenek kiadásaid.
-                                                </td>
-                                            </tr>
-
-                                        @endforelse
-
-                                        </tbody>
-                                        <!--Table body-->
-                                    </table>
-                                    <!--Table-->
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>
