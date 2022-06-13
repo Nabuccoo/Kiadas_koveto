@@ -85,39 +85,39 @@
                         <form action="/admin/new_user" method="POST" id="userForm" data-sb-form-api-token="API_TOKEN">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="hidden" name="last_id" value="{{$last_id+1}}">
-                                <input class="form-control" name = "name" id="felhasznalonev" type="text" placeholder="Felhasználónév" data-sb-validations="required" />
+                                <input type="hidden" name="last_id" value="{{$last_id+1}}" required>
+                                <input class="form-control" name = "name" id="felhasznalonev" type="text" placeholder="Felhasználónév" data-sb-validations="required" required />
                                 <label for="felhasznalonev">Felhasználónév</label>
                                 <div class="invalid-feedback" data-sb-feedback="felhasznalonev:required">Felhasználónév megadása
                                     kötelező!</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" name="last_name" id="vezeteknev" type="text" placeholder="Vezetéknév" data-sb-validations="required" />
+                                <input class="form-control" name="last_name" id="vezeteknev" type="text" placeholder="Vezetéknév" data-sb-validations="required" required/>
                                 <label for="vezeteknev">Vezetéknév</label>
                                 <div class="invalid-feedback" data-sb-feedback="vezeteknev:required">Vezetéknév megadása
                                     kötelező!</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" name="first_name" id="keresztnev" type="text" placeholder="Keresztnév" data-sb-validations="required" />
+                                <input class="form-control" name="first_name" id="keresztnev" type="text" placeholder="Keresztnév" data-sb-validations="required" required/>
                                 <label for="keresztnev">Keresztnév</label>
                                 <div class="invalid-feedback" data-sb-feedback="keresztnev:required">Keresztnév megadása
                                     kötelező!</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" name="email" id="eMailCim" type="email" placeholder="E-mail cím" data-sb-validations="required,email" />
+                                <input class="form-control" name="email" id="eMailCim" type="email" placeholder="E-mail cím" data-sb-validations="required,email" required/>
                                 <label for="eMailCim">E-mail cím</label>
                                 <div class="invalid-feedback" data-sb-feedback="eMailCim:required">E-mail cím megadása
                                     kötelező!</div>
                                 <div class="invalid-feedback" data-sb-feedback="eMailCim:email">E-mail cím nem érvényes!</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" name="password" id="jelszo" type="text" placeholder="Jelszó" data-sb-validations="required" />
+                                <input class="form-control" name="password" id="jelszo" type="text" placeholder="Jelszó" data-sb-validations="required" required/>
                                 <label for="jelszo">Jelszó</label>
                                 <div class="invalid-feedback" data-sb-feedback="jelszo:required">Jelszó megadása
                                     kötelező!</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="user_role" id="jogosultsag" aria-label="Jogosultság">
+                                <select class="form-select" name="user_role" id="jogosultsag" aria-label="Jogosultság" required>
                                     <option value="user">Felhasználó</option>
                                     <option value="admin">Adminisztrátor</option>
                                 </select>
@@ -216,7 +216,7 @@
                         <form action="/admin/category" method="POST" id="categoryForm" data-sb-form-api-token="API_TOKEN">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="kategoriaNeve" name="category_name" type="text" placeholder="Kategória neve" data-sb-validations="required" />
+                                <input class="form-control" id="kategoriaNeve" name="category_name" type="text" placeholder="Kategória neve" data-sb-validations="required" required />
                                 <label for="kategoriaNeve">Kategória neve</label>
                                 <div class="invalid-feedback" data-sb-feedback="kategoriaNeve:required">Kategória név megadása
                                     kötelező!</div>
@@ -224,11 +224,11 @@
                             <div class="mb-3">
                                 <label class="form-label d-block">Státusz</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="aktiv" checked type="radio" value="1" name="active" data-sb-validations="required" />
+                                    <input class="form-check-input" id="aktiv" checked type="radio" value="1" name="active" data-sb-validations="required" required/>
                                     <label class="form-check-label" for="aktiv">Aktív</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="inaktiv" type="radio" value="0" name="active" data-sb-validations="required" />
+                                    <input class="form-check-input" id="inaktiv" type="radio" value="0" name="active" data-sb-validations="required" required />
                                     <label class="form-check-label" for="inaktiv">Inaktív</label>
                                 </div>
                                 <div class="invalid-feedback" data-sb-feedback="statusz:required">Egy opció kiválasztása kötelező!</div>

@@ -41,7 +41,7 @@
                                         <tbody>
                                         @forelse($my_incomes as $income)
 
-                                            <tr class="table-info">
+                                            <tr class="table-success">
                                                 <th scope="row">{{ $income-> id }}</th>
                                                 <td>{{ $income-> description }}</td>
                                                 <td>{{ $income-> category_id }}</td>
@@ -50,7 +50,7 @@
                                                 <td>{{ $income-> updated_at }}</td>
                                             </tr>
                                         @empty
-                                            <tr class="table-warning">
+                                            <tr class="table-danger">
                                                 <td colspan="6">
                                                     Nincsenek bevételeid.
                                                 </td>
@@ -93,7 +93,7 @@
                                         <tbody>
                                         @forelse($my_expenses as $expense)
 
-                                            <tr class="table-info">
+                                            <tr class="table-warning">
                                                 <td>{{ $expense-> id }}</td>
                                                 <td>{{ $expense-> description }}</td>
                                                 <td>{{ $expense-> category_id }}</td>
